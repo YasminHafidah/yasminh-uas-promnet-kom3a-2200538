@@ -1,38 +1,356 @@
-.App {
-  text-align: center;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+    background-color: #eaede9;
+}
+nav {
+    display: flex;
+    font-family: sans-serif;
+    background-color: #469536;
+    justify-content: space-around;
+    color: whitesmoke;
+    height: 60px;
+    align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+nav .logo{
+    font-size: 12px;
+    font-family: verdana;
+    letter-spacing: 3px;
+    z-index: 2;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+nav ul{
+    display:flex;
+    list-style: none;
+    width: 28%;
+    justify-content: space-between;
+    font-family: 'DM Serif Display', serif;
 }
 
-.App-link {
-  color: #61dafb;
+nav ul li a{
+    color: whitesmoke;
+    text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav ul li a:hover{
+    color: #008000;
+    text-decoration: none;
 }
+
+
+.menu-toogle{
+    display: none;
+    flex-direction: column;
+    height: 20px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.menu-toogle input {
+    position: absolute;
+    width: 20px;
+    height : 28px;
+    left: -5px;
+    top : -3px;
+    opacity: 0;
+    cursor: pointer;  
+    z-index: 1;
+}
+
+.menu-toogle span{
+    display:block;
+    width: 20px;
+    height:3px;
+    background-color: whitesmoke;
+    border-radius: 3px;
+    transition : all 0.5s;
+}
+
+/* Hamburger Menu Animation */
+
+.menu-toogle span:nth-child(2){
+    transform-origin: 0 0;
+}
+
+.menu-toogle span:nth-child(4){
+    transform-origin: 0 100;
+}
+
+.menu-toogle input:checked ~ span:nth-child(2){
+    transform: translateY(20px);
+}
+
+.menu-toogle input:checked ~ span:nth-child(4){
+    transform: translateY(-20px);
+}
+
+.menu-toogle input:checked ~ span:nth-child(3){
+    opacity : 0;
+    transform: scale(0);
+}
+
+
+
+/* Responsive Navbar untuk Ukuran Tablet */
+@media screen and (max-width: 768px){
+    nav ul{
+        width: 40%;
+    }
+}
+
+/* Tampilan Mobile */
+@media screen and (max-width: 576px){
+
+    body {
+        overflow-x: hidden; /* Sembunyikan navbar saat translateX(100%) */
+    }
+
+   .menu-toogle{
+    display: flex;
+    z-index: 2;
+   }
+
+   nav ul{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width : 50%;
+    height : 50vh;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: #469536;
+    z-index : 1;
+    transform: translateX(100%);
+    transition: all 1s;
+   }
+
+
+   nav ul.slide{
+    transform: translateX(0);
+    margin-left: 50px;
+   }
+
+   .form:where(.gender-option, .gender){
+    row-gap: 15px;
+   }
+
+}
+
+/* CSS untuk page Home */
+.sub{
+    text-align: center;
+    font-family: verdana;
+    margin: 50%;
+}
+
+/* CSS untuk Add Pasien */
+
+.add{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6eaa5e;
+    font-family: verdana;
+    padding: 30px;
+}
+
+.form-container{
+    position: relative;
+    max-width: 700px;
+    width: 100%;
+    background-color:whitesmoke ;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
+}
+
+.form-container header{
+    font-size: 1.5rem;
+    color:#333;
+    font-weight: 500;
+    text-align: center;
+}
+
+.form-container .form{
+    margin-top: 30px
+}
+
+.form .user-details{
+    width:100%;
+    margin-top: 20px;
+}
+
+.user-details label{
+    color: #333;
+}
+
+.form .user-details input{
+    position: relative;
+    height:50px;
+    width:100%;
+    outline: none;
+    font-size: 1rem;
+    color:#707070;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+}
+
+.user-details input:focus{
+    box-shadow: 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.form .gender-box{
+    margin-top: 20px;
+}
+
+.gender-box h3{
+    color:#333;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.form :where( .gender-option, .gender){
+    display:flex;
+    align-items :center;
+    column-gap: 50px;
+    flex-wrap: wrap;
+}
+
+.form .gender{
+    column-gap: 5px;
+}
+
+.form :where(.gender input){
+    cursor: pointer;
+}
+
+.gender input{
+   accent-color: #6eaa5e; 
+}
+
+.form button{
+    height: 55px;
+    width: 100%;
+    background-color: #6eaa5e;
+    color:whitesmoke;
+    font-size: 1rem;
+    border:none;
+    margin-top: 30px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 400; 
+    transition: all 2s;
+}
+
+.form button:hover{
+    background-color: #008000; 
+}
+
+.form .text-area{
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-family: Verdana;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.text-area h3{
+    color:#333;
+    font-size: 1rem;
+    font-weight: 400;   
+}
+
+.text-area textarea{
+    width: 100%;
+    height: 100px;
+    padding: 15px;
+    outline: none;
+    resize:none;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.text-area textarea:focus, .text-area textarea:valid{
+    box-shadow: 0 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Home */
+.image{
+    display: flex;
+    width: 100%;
+    transition: 0.5s;
+}
+
+.image img{
+    width: 100%;
+}
+
+.wrapper{
+    width: 500px;
+    margin: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+#slide-1:target ~.image{
+    margin-left: 0px;
+}
+
+#slide-2:target ~.image{
+    margin-left: -100%;
+}
+
+#slide-3:target ~.image{
+    margin-left: -200%;
+}
+
+#slide-4:target ~.image{
+    margin-left: -300%;
+}
+
+.navigasi a{ 
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    background-color: #dedede;
+    font-size: 0px;
+    border-radius: 50%;
+    margin: 3px;
+    transition: 1s;
+}
+
+.navigasi a:hover{
+    background-color: #666;
+}
+
+.navigasi{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-top: -50px;
+}
+
+@media screen and (max-width:800px) {
+    .wrapper{
+        width: 90%;
+    }
+}
+
